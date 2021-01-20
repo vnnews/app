@@ -1,4 +1,4 @@
-# vnnews
+# Vietnamese News companion app
 
 A new Flutter project.
 
