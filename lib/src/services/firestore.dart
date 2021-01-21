@@ -1,10 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:vnnews/src/model/article_model.dart';
 
-final articlesProvider = FutureProvider.autoDispose
-    .family<List<ArticleModel>, DateTime>((ref, date) async {
+Future<List<ArticleModel>> getArticles(date) async {
   final zeroHourAtGmt7 =
       ((date.millisecondsSinceEpoch + _timestampMsGmt7) ~/ _timestampMsInADay) *
               _timestampMsInADay -
@@ -26,7 +24,7 @@ final articlesProvider = FutureProvider.autoDispose
     final article = ArticleModel.fromJson(data);
     return article;
   }).toList(growable: false);
-});
+}
 
 const _articlesFieldFirstTimestamp = 'first_timestamp';
 const _timestampMsInADay = 86400000;
